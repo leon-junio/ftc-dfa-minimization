@@ -1,8 +1,11 @@
 package com.boisbarganhados.ftc.jflap.utils;
 
+import com.boisbarganhados.ftc.minimization.DFAState;
+
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlAttribute;
+import jakarta.xml.bind.annotation.XmlElement;
 import lombok.Data;
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -14,7 +17,17 @@ public class State {
     private String name;
     private double x;
     private double y;
-    private boolean initial;
-    private boolean _final;
-    
+    @XmlElement(name = "initial")
+    private boolean stateInitial;
+    @XmlElement(name = "final")
+    private boolean stateFinal;
+
+    public DFAState toDfaState() {
+        var dfaState = new DFAState(this.getId());
+        dfaState.setFinalState(this.isStateFinal());
+        dfaState.setInitialState(this.isStateInitial());
+        dfaState.setName(this.getName());
+        return dfaState;
+    }
+
 }

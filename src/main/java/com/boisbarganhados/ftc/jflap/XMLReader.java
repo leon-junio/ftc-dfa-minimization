@@ -10,15 +10,18 @@ import jakarta.xml.bind.Unmarshaller;
 
 public class XMLReader {
 
-    public Automaton reader(File xmlFile) throws JAXBException, Exception {
-        // Create JAXB context and instantiate unmarshaller
+    /**
+     * Read a XML file and return a Automaton object
+     * 
+     * @param File xmlFile File type to be read
+     * @return Automaton object with the data from the XML file
+     * @throws JAXBException
+     * @throws Exception
+     */
+    public static Automaton reader(File xmlFile) throws JAXBException, Exception {
         JAXBContext jaxbContext = JAXBContext.newInstance(Automaton.class);
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-
-        // Unmarshal XML to Java object
         Automaton automaton = (Automaton) jaxbUnmarshaller.unmarshal(xmlFile);
-
-        // Access the object and do whatever you need
         return automaton;
     }
 
