@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<structure>
+    <type>fa</type>
+    <automaton>
+        <state id="0" name="q0">
+            <x>0.0</x>
+            <y>0.0</y>
+            <initial>false</initial>
+            <final>false</final>
+        </state>
+        <state id="1" name="q1">
+            <x>0.0</x>
+            <y>0.0</y>
+            <initial>false</initial>
+            <final>false</final>
+        </state>
+        <transition>
+            <from>0</from>
+            <to>1</to>
+            <read>1</read>
+        </transition>
+    </automaton>
+</structure>
