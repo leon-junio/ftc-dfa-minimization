@@ -4,7 +4,7 @@ import com.boisbarganhados.ftc.jflap.utils.Automaton;
 import com.boisbarganhados.ftc.jflap.utils.Transition;
 import com.boisbarganhados.ftc.minimization.DFA;
 
-public class JflapParser {
+public class JFlapParser {
 
     /**
      * Parse a JFLAP automaton to a DFA internal representation 

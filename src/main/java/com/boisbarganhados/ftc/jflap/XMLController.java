@@ -14,23 +14,42 @@ public class XMLController {
     /**
      * Read a XML file and return a Automaton object
      * 
-     * @param File xmlFile File type to be read
+     * @param String xmlFile File type to be read
      * @return Automaton object with the data from the XML file
      * @throws JAXBException
      * @throws Exception
      */
-    public static Automaton reader(File xmlFile) throws JAXBException, Exception {
+    public static Automaton reader(String filePath) throws JAXBException, Exception {
+        var xmlFile = new File(filePath);
+        if (!xmlFile.exists()) {
+            throw new Exception("File not found");
+        }
+        JFFProcessor.preProcessJFF(xmlFile);
+        xmlFile = new File(filePath);
         JAXBContext jaxbContext = JAXBContext.newInstance(Automaton.class);
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
         Automaton automaton = (Automaton) jaxbUnmarshaller.unmarshal(xmlFile);
         return automaton;
     }
 
-    public static void writer(Automaton automaton, File xmlFile) throws JAXBException, Exception {
+    /**
+     * Write a Automaton object to a XML file
+     * 
+     * @param Automaton automaton Automaton object to be written
+     * @param File      xmlFile File type to be written
+     * @throws JAXBException
+     * @throws Exception
+     */
+    public static void writer(Automaton automaton, String filePath) throws JAXBException, Exception {
+        var xmlFile = new File(filePath);
+        if (!xmlFile.exists()) {
+            throw new Exception("File not found");
+        }
         JAXBContext jaxbContext = JAXBContext.newInstance(Automaton.class);
         Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
         jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
         jaxbMarshaller.marshal(automaton, xmlFile);
+        JFFProcessor.postProcessJFF(xmlFile);
     }
 
 }
