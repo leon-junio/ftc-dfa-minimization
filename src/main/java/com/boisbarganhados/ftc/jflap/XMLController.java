@@ -6,9 +6,10 @@ import com.boisbarganhados.ftc.jflap.utils.Automaton;
 
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
 
-public class XMLReader {
+public class XMLController {
 
     /**
      * Read a XML file and return a Automaton object
@@ -23,6 +24,13 @@ public class XMLReader {
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
         Automaton automaton = (Automaton) jaxbUnmarshaller.unmarshal(xmlFile);
         return automaton;
+    }
+
+    public static void writer(Automaton automaton, File xmlFile) throws JAXBException, Exception {
+        JAXBContext jaxbContext = JAXBContext.newInstance(Automaton.class);
+        Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+        jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        jaxbMarshaller.marshal(automaton, xmlFile);
     }
 
 }
