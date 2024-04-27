@@ -5,12 +5,12 @@
 		<state id="0" name="q0">&#13;
 			<x>198.0</x>&#13;
 			<y>183.0</y>&#13;
-			<initial/>&#13;
+<initial>true</initial>
 		</state>&#13;
 		<state id="1" name="q1">&#13;
 			<x>323.0</x>&#13;
 			<y>175.0</y>&#13;
-			<final/>&#13;
+<final>true</final>
 		</state>&#13;
 		<!--The list of transitions.-->&#13;
 		<transition>&#13;
