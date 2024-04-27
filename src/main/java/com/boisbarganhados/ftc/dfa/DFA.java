@@ -16,4 +16,8 @@ public class DFA {
     public DFA() {
         this.states = new ArrayList<>();
     }
+
+    public DFAState getInitialState() {
+        return states.stream().filter(DFAState::isInitialState).findFirst().orElse(null);
+    }
 }

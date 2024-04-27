@@ -35,6 +35,19 @@ public class DFAState {
         transitions.put(key, transitionsSet);
     }
 
+    /**
+     * Returns the state that the DFA transitions to for a given input symbol.
+     * (This method needs to be implemented in the DFAState class)
+     *
+     * @param symbol The input symbol.
+     * @return The state reached after transitioning on the given symbol, or null if
+     *         no transition exists.
+     */
+    public DFAState getTransitionState(String symbol) {
+        HashSet<DFAState> possibleStates = transitions.get(symbol);
+        return possibleStates != null && !possibleStates.isEmpty() ? possibleStates.iterator().next() : null;
+    }
+
     public State toState() {
         var state = new State();
         state.setId(this.getId());
@@ -53,7 +66,16 @@ public class DFAState {
                 ", name='" + name + '\'' +
                 ", initialState=" + initialState +
                 ", finalState=" + finalState +
-                ", transitions=" + transitions.keySet() +
+                ", transitions=" + transitions.keySet() + " -- " + printTransitions() +
                 '}';
+    }
+
+    private String printTransitions() {
+        StringBuilder sb = new StringBuilder();
+        transitions.forEach((key, value) -> {
+            sb.append(key).append(" -> ");
+            value.forEach(v -> sb.append(v.getId()).append(", "));
+        });
+        return sb.toString();
     }
 }
