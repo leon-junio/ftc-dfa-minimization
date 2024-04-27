@@ -59,7 +59,7 @@ public class Main {
             var dfa = JFlapParser.parse(at);
             XMLController.writer(JFlapParser.parse(dfa), TEST_RESULT_DFA);
             System.out.println("Testing minimization...");
-            var minimizedDFA = RootDFAMinimizer.minimize(dfa);
+            var minimizedDFA = RootDFAMinimizer.minimizeDFA(dfa);
             System.out.println("Minimized DFA:");
             System.out.println(minimizedDFA);
             System.out.println("Writing minimized DFA to JFLAP file...");
@@ -93,7 +93,7 @@ public class Main {
             var jflapDFA = XMLController.reader(xmlFilePath);
             var internalDfa = JFlapParser.parse(jflapDFA);
             // TODO: Implement optimized minimization
-            var minimizedDFA = option == 1 ? RootDFAMinimizer.minimize(internalDfa) : internalDfa;
+            var minimizedDFA = option == 1 ? RootDFAMinimizer.minimizeDFA(internalDfa) : internalDfa;
             var minimizedPath = xmlFilePath.replace(".jff", "_minimized.jff");
             XMLController.writer(JFlapParser.parse(minimizedDFA), minimizedPath);
             System.out.println("Minimization finished. Result saved to " + minimizedPath);

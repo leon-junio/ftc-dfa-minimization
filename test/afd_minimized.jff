@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<structure>
+    <type>fa</type>
+    <automaton>
+        <state id="2" name="q2">
+            <x>100.0</x>
+            <y>100.0</y>
+        </state>
+        <state id="4" name="q4">
+            <x>200.0</x>
+            <y>200.0</y>
+<final/>
+        </state>
+    </automaton>
+</structure>
