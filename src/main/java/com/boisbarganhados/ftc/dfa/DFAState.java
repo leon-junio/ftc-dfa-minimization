@@ -19,11 +19,18 @@ public class DFAState {
     @EqualsAndHashCode.Exclude
     private Map<String, HashSet<DFAState>> transitions;
 
+    private static final int UI_XY_FACTOR = 50;
+
     public DFAState(int i) {
         id = i;
         transitions = new HashMap<>();
     }
 
+    /**
+     * Add a transition to the state. 
+     * @param key The input symbol.
+     * @param value The state that the DFA transitions to for the given input symbol.
+     */
     public void put(String key, DFAState value) {
         HashSet<DFAState> transitionsSet;
         if (transitions.containsKey(key)) {
@@ -48,14 +55,18 @@ public class DFAState {
         return possibleStates != null && !possibleStates.isEmpty() ? possibleStates.iterator().next() : null;
     }
 
+    /**
+     * Return a State object with the same attributes as this DFAState.
+     * @return A State object with the same attributes as this DFAState.
+     */
     public State toState() {
         var state = new State();
         state.setId(this.getId());
         state.setName(this.getName());
         state.setStateInitial(this.isInitialState());
         state.setStateFinal(this.isFinalState());
-        state.setX(this.getId() * 50);
-        state.setY(this.getId() * 50);
+        state.setX(this.getId() * UI_XY_FACTOR);
+        state.setY(this.getId() * UI_XY_FACTOR);
         return state;
     }
 
@@ -70,11 +81,19 @@ public class DFAState {
                 '}';
     }
 
+    /**
+     * Print transitions in a more readable way for the toString method.
+     * 
+     * @return A string with the transitions.
+     */
     private String printTransitions() {
         StringBuilder sb = new StringBuilder();
         transitions.forEach((key, value) -> {
             sb.append(key).append(" -> ");
-            value.forEach(v -> sb.append(v.getId()).append(", "));
+            if (value.isEmpty())
+                sb.append("[], ");
+            else
+                value.forEach(v -> sb.append(v.getId()).append(" (" + v.getName() + ")").append(", "));
         });
         return sb.toString();
     }
