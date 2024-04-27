@@ -1,4 +1,4 @@
-package com.boisbarganhados.ftc.minimization;
+package com.boisbarganhados.ftc.dfa;
 
 import java.util.ArrayList;
 import java.util.List;

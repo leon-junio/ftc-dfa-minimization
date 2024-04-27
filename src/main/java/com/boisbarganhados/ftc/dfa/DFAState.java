@@ -1,4 +1,4 @@
-package com.boisbarganhados.ftc.minimization;
+package com.boisbarganhados.ftc.dfa;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -13,7 +13,7 @@ import lombok.EqualsAndHashCode;
 @Data
 public class DFAState {
     private int id;
-    private List<Integer> ids;  
+    private List<Integer> ids;
     private String name;
     private boolean initialState, finalState;
     @EqualsAndHashCode.Exclude
@@ -41,6 +41,8 @@ public class DFAState {
         state.setName(this.getName());
         state.setStateInitial(this.isInitialState());
         state.setStateFinal(this.isFinalState());
+        state.setX(this.getId() * 50);
+        state.setY(this.getId() * 50);
         return state;
     }
 

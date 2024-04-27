@@ -8,22 +8,22 @@
 <final/>
         </state>
         <state id="1" name="q1">
-            <x>0.0</x>
-            <y>0.0</y>
+            <x>50.0</x>
+            <y>50.0</y>
 <initial/>
 <final/>
         </state>
         <state id="2" name="q2">
-            <x>0.0</x>
-            <y>0.0</y>
+            <x>100.0</x>
+            <y>100.0</y>
         </state>
         <state id="3" name="q3">
-            <x>0.0</x>
-            <y>0.0</y>
+            <x>150.0</x>
+            <y>150.0</y>
         </state>
         <state id="4" name="q4">
-            <x>0.0</x>
-            <y>0.0</y>
+            <x>200.0</x>
+            <y>200.0</y>
 <final/>
         </state>
         <transition>

@@ -1,6 +1,6 @@
 package com.boisbarganhados.ftc.jflap.utils;
 
-import com.boisbarganhados.ftc.minimization.DFAState;
+import com.boisbarganhados.ftc.dfa.DFAState;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;

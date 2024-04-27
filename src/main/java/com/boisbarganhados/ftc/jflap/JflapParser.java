@@ -1,8 +1,8 @@
 package com.boisbarganhados.ftc.jflap;
 
+import com.boisbarganhados.ftc.dfa.DFA;
 import com.boisbarganhados.ftc.jflap.utils.Automaton;
 import com.boisbarganhados.ftc.jflap.utils.Transition;
-import com.boisbarganhados.ftc.minimization.DFA;
 
 public class JFlapParser {
 

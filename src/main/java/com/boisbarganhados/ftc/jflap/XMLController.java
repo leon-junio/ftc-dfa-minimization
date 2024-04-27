@@ -42,13 +42,12 @@ public class XMLController {
      */
     public static void writer(Automaton automaton, String filePath) throws JAXBException, Exception {
         var xmlFile = new File(filePath);
-        if (!xmlFile.exists()) {
-            throw new Exception("File not found");
-        }
         JAXBContext jaxbContext = JAXBContext.newInstance(Automaton.class);
         Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
         jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
         jaxbMarshaller.marshal(automaton, xmlFile);
+        if (!xmlFile.exists())
+            throw new Exception("Error writing file");
         JFFProcessor.postProcessJFF(xmlFile);
     }
 

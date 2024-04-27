@@ -5,6 +5,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.boisbarganhados.ftc.dfa.DFA;
+import com.boisbarganhados.ftc.dfa.DFAState;
+
 public class RootDFAMinimizer {
 
     /**
