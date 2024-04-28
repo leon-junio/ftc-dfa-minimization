@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import com.boisbarganhados.ftc.jflap.JFlapParser;
 import com.boisbarganhados.ftc.jflap.XMLController;
+import com.boisbarganhados.ftc.minimization.OptimizedDFAMinimizer;
 import com.boisbarganhados.ftc.minimization.RootDFAMinimizer;
 
 public class Main {
@@ -39,7 +40,7 @@ public class Main {
         String response = scanner.nextLine();
         if (response == null || response.isEmpty()) {
             test();
-        }else if (response.equals("exit")) {
+        } else if (response.equals("exit")) {
             System.exit(0);
         } else {
             startMinimization(response);
@@ -92,9 +93,10 @@ public class Main {
             System.out.println(xmlFilePath);
             var jflapDFA = XMLController.reader(xmlFilePath);
             var internalDfa = JFlapParser.parse(jflapDFA);
-            // TODO: Implement optimized minimization
-            var minimizedDFA = option == 1 ? RootDFAMinimizer.minimizeDFA(internalDfa) : internalDfa;
-            var minimizedPath = xmlFilePath.replace(".jff", "_minimized.jff");
+            var minimizedDFA = option == 1 ? RootDFAMinimizer.minimizeDFA(internalDfa)
+                    : OptimizedDFAMinimizer.minimizeDFA(internalDfa);
+            var minimizedPath = xmlFilePath.replace(".jff",
+                    option == 1 ? "_root_minimized.jff" : "_optimized_minimized.jff");
             XMLController.writer(JFlapParser.parse(minimizedDFA), minimizedPath);
             System.out.println("Minimization finished. Result saved to " + minimizedPath);
             runJFLAP(minimizedPath);
