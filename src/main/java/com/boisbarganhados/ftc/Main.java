@@ -10,7 +10,7 @@ import com.boisbarganhados.ftc.minimization.RootDFAMinimizer;
 public class Main {
 
     private final static Scanner scanner = new Scanner(System.in);
-    private final static String JFLAP_PATH = "bin/JFLAP/JFLAP7.1.jar";
+    private final static String JFLAP_PATH = "bin/JFLAP/JFLAP.jar";
     private final static String TEST_AFD_DFA = "test/afd.jff";
     private final static String TEST_MINIMIZED_DFA = "test/minimized.jff";
     private final static String TEST_RESULT_DFA = "test/result.jff";
