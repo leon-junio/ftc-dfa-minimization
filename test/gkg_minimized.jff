@@ -2,6 +2,11 @@
 <structure>
     <type>fa</type>
     <automaton>
+        <state id="0" name="q0">
+            <x>0.0</x>
+            <y>0.0</y>
+<initial/>
+        </state>
         <state id="4" name="q4">
             <x>200.0</x>
             <y>200.0</y>
@@ -11,11 +16,20 @@
             <x>250.0</x>
             <y>250.0</y>
         </state>
-        <state id="0" name="q0">
-            <x>0.0</x>
-            <y>0.0</y>
-<initial/>
+        <state id="3" name="q3">
+            <x>150.0</x>
+            <y>150.0</y>
         </state>
+        <transition>
+            <from>0</from>
+            <to>3</to>
+            <read>0</read>
+        </transition>
+        <transition>
+            <from>0</from>
+            <to>4</to>
+            <read>1</read>
+        </transition>
         <transition>
             <from>4</from>
             <to>4</to>
@@ -37,12 +51,7 @@
             <read>1</read>
         </transition>
         <transition>
-            <from>0</from>
-            <to>0</to>
-            <read>0</read>
-        </transition>
-        <transition>
-            <from>0</from>
+            <from>3</from>
             <to>4</to>
             <read>1</read>
         </transition>

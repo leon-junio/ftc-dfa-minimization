@@ -3,15 +3,22 @@ package com.boisbarganhados.ftc;
 import java.io.File;
 import java.util.Scanner;
 
+import com.boisbarganhados.ftc.dfa.DFA;
 import com.boisbarganhados.ftc.jflap.JFlapParser;
 import com.boisbarganhados.ftc.jflap.XMLController;
 import com.boisbarganhados.ftc.minimization.OptimizedDFAMinimizer;
 import com.boisbarganhados.ftc.minimization.RootDFAMinimizer;
 
+/**
+ * DFA Minimization - FTC Assignment/PUC Minas - 2024/1
+ * 
+ * @author Leon Junio Martins Ferreira [https://github.com/leon-junio]
+ * @author Edmar Melandes Junior [https://github.com/Lexizz7]
+ */
 public class Main {
 
     private final static Scanner scanner = new Scanner(System.in);
-    private final static String JFLAP_PATH = "bin/JFLAP/JFLAP7.1.jar";
+    private final static String JFLAP_PATH = "bin/JFLAP/JFLAP.jar";
     private final static String TEST_AFD_DFA = "test/afd.jff";
     private final static String TEST_MINIMIZED_DFA = "test/minimized.jff";
     private final static String TEST_RESULT_DFA = "test/result.jff";
@@ -36,12 +43,15 @@ public class Main {
     public static void menu() throws Exception {
         System.out.println("Enter the path (or file name if file is located at program root folder) \n " +
                 "to the JFLAP file: (.jff files) ");
-        System.out.println("Enter 'exit' to close the program");
+        System.out.println("Enter 'gen' to generate a dfa to test\nenter 'exit' to close the program");
         String response = scanner.nextLine();
         if (response == null || response.isEmpty()) {
             test();
-        } else if (response.equals("exit")) {
-            System.exit(0);
+        } else if (response.equals("gen")) {
+           generate();
+        }
+        else if (response.equals("exit")) {
+                System.exit(0);
         } else {
             startMinimization(response);
         }
@@ -119,6 +129,26 @@ public class Main {
             System.out.println("Running JFLAP with results");
         } catch (Exception e) {
             System.err.println("JFLAP Launcher error:");
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Generate a test DFA
+     */
+    private static void generate() {
+        try {
+            System.out.println("Generating test DFA...");
+            System.out.println("Enter the number of states for the test DFA:");
+            int nStates = scanner.nextInt();
+            scanner.nextLine();
+            var dfa = DFA.generateDoubleStateTest(nStates);
+            var dfaPath = "test/generated_" + nStates + "_states.jff";
+            XMLController.writer(JFlapParser.parse(dfa), dfaPath);
+            System.out.println("Test DFA generated. Path: " + dfaPath);
+            runJFLAP(dfaPath);
+        } catch (Exception e) {
+            System.err.println("Error while generating test DFA:");
             e.printStackTrace();
         }
     }
