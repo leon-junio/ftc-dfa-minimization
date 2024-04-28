@@ -20,4 +20,57 @@ public class DFA {
     public DFAState getInitialState() {
         return states.stream().filter(DFAState::isInitialState).findFirst().orElse(null);
     }
+
+    /**
+     * Add a transition to the DFA.
+     * 
+     * @param from   The state from which the transition starts.
+     * @param to     The state to which the DFA transitions to.
+     * @param symbol The input symbol that triggers the transition.
+     */
+    public void addTransition(int from, int to, String symbol) {
+        if (from >= states.size() || to >= states.size() || from < 0 || to < 0) {
+            return;
+        }
+        states.get(from).put(symbol, states.get(to));
+    }
+
+    /**
+     * Create a DFA withD a simple test case with nStates states.
+     * 
+     * @param nStates The number of states in the DFA.
+     * @return A DFA with nStates states.
+     */
+    public static DFA generateDoubleStateTest(int nStates) {
+        var states = new ArrayList<DFAState>();
+        var initialState = new DFAState(0);
+        var finalState = new DFAState(nStates - 1);
+        initialState.setInitialState(true);
+        initialState.setName("q0");
+        finalState.setFinalState(true);
+        finalState.setName("q" + (nStates - 1));
+        states.add(initialState);
+        for (int i = 1; i < nStates - 1; i++) {
+            var state = new DFAState(i);
+            state.setName("q" + i);
+            states.add(state);
+        }
+        states.add(finalState);
+        DFA dfa = new DFA(states);
+        for (int i = 0; i < nStates - 1; i++) {
+            if (i % 2 == 0) {
+                dfa.addTransition(i, i + 1, "a");
+                dfa.addTransition(i + 1, i, "a");
+                dfa.addTransition(i, i + 2, "b");
+            } else {
+                dfa.addTransition(i, i + 1, "b");
+            }
+        }
+        if (nStates % 2 == 0) {
+            dfa.addTransition(nStates - 2, nStates - 1, "b");
+        }
+        dfa.addTransition(nStates - 1, nStates - 1, "a");
+        dfa.addTransition(nStates - 1, nStates - 1, "b");
+        return dfa;
+    }
 }
